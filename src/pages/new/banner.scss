@@ -1,0 +1,85 @@
+.banner {
+    width: 100%;
+    display: flex;
+
+    .bannerContainer {
+        flex: 6;
+
+        .top,
+        .bottom {
+            -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+            box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+            padding: 10px;
+            margin: 20px;
+            display: flex;
+            flex-direction: column; // Adjusted to column layout
+
+            h1 {
+                color: lightgray;
+                font-size: 20px;
+                margin-bottom: 10px; // Added margin for better spacing
+            }
+
+            .left {
+                text-align: center;
+
+                img {
+                    max-width: 30%; // Make the image responsive
+                    max-height: 30%; // Make the image responsive
+                    //border-radius: 50%;
+                    object-fit: cover;
+                }
+            }
+
+            .right {
+                form {
+                    display: flex;
+                    flex-direction: column; // Adjusted to column layout
+                    gap: 20px; // Added gap for better spacing
+
+                    .formInput {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 20px; // Adjusted for better spacing
+                    }
+
+                    .formRow {
+                        display: flex;
+                        flex-wrap: wrap; // Adjusted for better wrapping
+                        gap: 20px; // Added gap for better spacing
+                    }
+
+                    .formColumn {
+                        flex: 1; // Adjusted to take full width
+                    }
+
+                    input {
+                        width: 100%;
+                        padding: 8px;
+                        border: 1px solid gray;
+                        border-radius: 4px;
+                    }
+
+                    select {
+                        width: 100%;
+                        padding: 8px;
+                        border: 1px solid gray;
+                        border-radius: 4px;
+                        height: 150px; // Adjusted height
+                        overflow-y: auto; // Added overflow for better scrolling
+                    }
+
+                    button {
+                        width: 150px;
+                        padding: 10px;
+                        border: none;
+                        background-color: teal;
+                        color: white;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
