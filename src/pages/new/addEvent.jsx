@@ -45,7 +45,8 @@ const AddEvent = ({ title }) => {
     description: "",
     eventType: "",
     category: "",
-    location: "",
+    latitude: "",
+    longitude: "",
     startingTime: dayjs("2024-05-05T15:30"),
     organizer: "",
     image: null,
@@ -139,34 +140,36 @@ const AddEvent = ({ title }) => {
     setLoading(true);
 
     try {
+      const formDataObject = {
+        image: formData.image,
+        name: formData.name,
+        description: formData.description,
+        eventType: formData.eventType,
+        category: formData.category,
+        latitude: formData.latitude,
+        longitude: formData.longitude,
+        startingTime: formData.startingTime.format("YYYY-MM-DDTHH:mm:ss"),
+        organizer: formData.organizer,
+        tickets: JSON.stringify(tickets),
+      };
+
       const eventData = new FormData();
 
-      eventData.append("image", formData.image);
-      eventData.append("name", formData.name);
-      eventData.append("description", formData.description);
-      eventData.append("eventType", formData.eventType);
-      eventData.append("category", formData.category);
-      eventData.append("location", formData.location);
-      eventData.append(
-        "startingTime",
-        formData.startingTime.format("YYYY-MM-DDTHH:mm:ss")
-      );
-      eventData.append("organizer", formData.organizer);
-      eventData.append("tickets", JSON.stringify(tickets));
+      Object.keys(formDataObject).forEach((key) => {
+        eventData.append(key, formDataObject[key]);
+      });
 
-      console.log(Object.fromEntries(eventData));
-      const eventDataJSON = Object.fromEntries(eventData);
-
-      await eventsApiRequests.addEvent(eventDataJSON);
+      await eventsApiRequests.addEvent(eventData);
 
       // Reset form after submission
-
       setFormData({
         name: "",
         description: "",
         eventType: "",
         category: "",
         location: "",
+        latitude: "",
+        longitude: "",
         startingTime: dayjs("2024-05-05T15:30"),
         organizer: "",
         image: null,
@@ -339,32 +342,42 @@ const AddEvent = ({ title }) => {
 
                 <div className="formRow">
                   <div className="formColumn">
-                    <label>Location:</label>
+                    <label>Latitude:</label>
                     <input
-                      type="text"
-                      name="location"
-                      value={formData.location}
+                      type="number"
+                      name="latitude"
+                      value={formData.latitude}
                       onChange={(e) =>
-                        setFormData({ ...formData, location: e.target.value })
+                        setFormData({ ...formData, latitude: e.target.value })
                       }
                     />
                   </div>
                   <div className="formColumn">
-                    <div className="dateTimePickerWrapper">
-                      <DateTimePicker
-                        label="Starting Time"
-                        onChange={(date) =>
-                          setFormData({
-                            ...formData,
-                            startingTime: date,
-                          })
-                        }
-                        value={formData.startingTime}
-                      />
-                    </div>
+                    <label>Longitude:</label>
+                    <input
+                      type="number"
+                      name="longitude"
+                      value={formData.longitude}
+                      onChange={(e) =>
+                        setFormData({ ...formData, longitude: e.target.value })
+                      }
+                    />
                   </div>
                 </div>
-
+                <div className="formColumn">
+                  <div className="dateTimePickerWrapper">
+                    <DateTimePicker
+                      label="Starting Time"
+                      onChange={(date) =>
+                        setFormData({
+                          ...formData,
+                          startingTime: date,
+                        })
+                      }
+                      value={formData.startingTime}
+                    />
+                  </div>
+                </div>
                 <button type="submit">
                   {loading ? "Uploading" : "Add Event"}
                 </button>

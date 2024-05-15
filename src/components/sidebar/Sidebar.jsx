@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
 import { useAuth } from "../context/AuthenticationContext";
+import { ViewCarousel, Warehouse } from "@mui/icons-material";
 
 const Sidebar = () => {
   const { logout } = useAuth();
@@ -52,14 +53,24 @@ const Sidebar = () => {
               <span>Event Types</span>
             </li>
           </Link>
-
+          <Link to="/banners" style={{ textDecoration: "none" }}>
+            <li>
+              <ViewCarousel className="icon" />
+              <span>Banners</span>
+            </li>
+          </Link>
           <Link to="/orders" style={{ textDecoration: "none" }}>
             <li>
               <CreditCardIcon className="icon" />
               <span>Orders</span>
             </li>
           </Link>
-
+          <Link to="/pickup-stations">
+            <li>
+              <Warehouse className="icon" />
+              <span>Pickup-Stations</span>
+            </li>
+          </Link>
           <p className="title">USEFUL</p>
           <li>
             <InsertChartIcon className="icon" />
