@@ -26,7 +26,7 @@ export const eventColumns = [
     renderCell: (params) => {
       return (
         <div>
-          ${params.row.price.toFixed(2)}{" "}
+          ${params?.row?.price}
           {/* Displaying price with 2 decimal places */}
         </div>
       );

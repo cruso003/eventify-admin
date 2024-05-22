@@ -53,7 +53,7 @@ const SingleEvents = () => {
             <h1 className="title">Information</h1>
             <div className="item">
               <img
-                src={event.image ? event.image[0] : ""}
+                src={event.imageUrl ? event.imageUrl : ""}
                 alt=""
                 className="itemImg"
               />
@@ -85,7 +85,7 @@ const SingleEvents = () => {
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Organizer: </span>
-                  <span className="itemValue">{event.organizer}</span>
+                  <span className="itemValue">{event.owner}</span>
                 </div>
                 <div className="detailItem">
                   <span className="itemKey">Event Type: </span>
@@ -104,8 +104,9 @@ const SingleEvents = () => {
                       <ul>
                         {event.tickets.map((tickets, index) => (
                           <li key={index}>
-                            <strong>{tickets.name}:</strong>{" "}
-                            {tickets.options.join(", ")}
+                            <strong>
+                              {tickets.name}: ${tickets.price}
+                            </strong>{" "}
                           </li>
                         ))}
                       </ul>

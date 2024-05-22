@@ -179,20 +179,7 @@ const EditEvent = ({ title }) => {
                 {/* Variation */}
                 <div className="detailItem">
                   <span className="itemKey">Variation:</span>
-                  <span className="itemValue">
-                    {event.variations && event.variations.length > 0 ? (
-                      <ul>
-                        {event.variations.map((variation, index) => (
-                          <li key={index}>
-                            <strong>{variation.name}:</strong>{" "}
-                            {variation.options.join(", ")}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : (
-                      "No variations available"
-                    )}
-                  </span>
+                  <span className="itemValue"></span>
                 </div>
               </div>
             </div>
@@ -253,56 +240,7 @@ const EditEvent = ({ title }) => {
                   />
                 </label>
                 {/* Add similar input fields for other editable fields */}
-                {/* Variations */}
 
-                {event.variations.map((variation, index) => (
-                  <div key={index}>
-                    <label>
-                      Variation {index + 1} Name:
-                      <input
-                        type="text"
-                        value={variation.name}
-                        onChange={(e) =>
-                          handleVariationChange(index, {
-                            ...variation,
-                            name: e.target.value,
-                          })
-                        }
-                      />
-                    </label>
-                    <label>
-                      Variation {index + 1} Options:
-                      <input
-                        type="text"
-                        value={variation.options.join(", ")}
-                        onChange={(e) =>
-                          handleVariationChange(index, {
-                            ...variation,
-                            options: e.target.value.split(", "),
-                          })
-                        }
-                      />
-                    </label>
-                  </div>
-                ))}
-
-                {/* Button to add a new variation */}
-                <div>
-                  <button
-                    type="button"
-                    onClick={() =>
-                      setEvent((prevProduct) => ({
-                        ...prevProduct,
-                        variations: [
-                          ...prevProduct.variations,
-                          { name: "", options: [] },
-                        ],
-                      }))
-                    }
-                  >
-                    Add Variation
-                  </button>
-                </div>
                 <button type="submit">Save Changes</button>
               </div>
             </form>

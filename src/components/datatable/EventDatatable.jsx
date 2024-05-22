@@ -12,11 +12,12 @@ const EventDatatable = () => {
   const fetchEvents = async () => {
     try {
       const response = await eventsApiRequests.getEvents();
+
       /// Transform the fetched data to match the productRows format
       const transformedData = response.data.map((event) => ({
         id: event._id,
         name: event.name,
-        img: event.image ? event.image[0] : "", // Assuming images array is available
+        img: event.imageUrl ? event.imageUrl : "", // Assuming images array is available
         description: event.description,
         organizer: event.organizer,
       }));
